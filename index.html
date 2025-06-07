@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SuggestB</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>SuggestB</h1>
+
+  <section id="menu">
+    <h2>Select a Meal Type</h2>
+    <button onclick="selectCategory('Breakfast')">Breakfast</button>
+    <button onclick="selectCategory('Brunch')">Brunch</button>
+    <button onclick="selectCategory('Lunch')">Lunch</button>
+    <button onclick="selectCategory('Snacks')">Snacks</button>
+    <button onclick="selectCategory('Dinner')">Dinner</button>
+  </section>
+
+  <section id="ingredientInput" style="display:none;">
+    <h2>Enter Your Ingredients</h2>
+    <input type="text" id="ingredients" placeholder="e.g. egg, bread, milk"/>
+    <button onclick="findRecipes()">Find Recipes</button>
+  </section>
+
+  <section id="recipeResults"></section>
+
+  <section id="addRecipe">
+    <h2>Add New Recipe</h2>
+    <input type="text" id="recipeName" placeholder="Recipe Name" />
+    <select id="recipeCategory">
+      <option value="Breakfast">Breakfast</option>
+      <option value="Brunch">Brunch</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Snacks">Snacks</option>
+      <option value="Dinner">Dinner</option>
+    </select>
+    <input type="text" id="recipeIngredients" placeholder="Key Ingredients (comma separated)" />
+    <textarea id="recipeInstructions" placeholder="Recipe Instructions"></textarea>
+    <button onclick="addRecipe()">Add Recipe</button>
+  </section>
+
+  <!-- ✅ Firebase Setup -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA3aetlyBiZm7OQ_tol2AlgA-FZH5MWa-g",
+      authDomain: "suggestb-85bf6.firebaseapp.com",
+      projectId: "suggestb-85bf6",
+      storageBucket: "suggestb-85bf6.firebasestorage.app",
+      messagingSenderId: "807053257328",
+      appId: "1:807053257328:web:daa84a494b7842f1a2a2b5",
+      measurementId: "G-J1SW2PX0DG"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Make Firestore accessible to global script
+    window.db = db;
+  </script>
+
+  <!-- Main Script (Non-module, waits for window.db) -->
+  <script src="script.js"></script>
+</body>
+</html>
