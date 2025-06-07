@@ -9,6 +9,7 @@
 <body>
   <h1>SuggestB</h1>
 
+  <!-- Meal Type Selection -->
   <section id="menu">
     <h2>Select a Meal Type</h2>
     <button onclick="selectCategory('Breakfast')">Breakfast</button>
@@ -18,14 +19,17 @@
     <button onclick="selectCategory('Dinner')">Dinner</button>
   </section>
 
+  <!-- Ingredient Input -->
   <section id="ingredientInput" style="display:none;">
     <h2>Enter Your Ingredients</h2>
     <input type="text" id="ingredients" placeholder="e.g. egg, bread, milk"/>
     <button onclick="findRecipes()">Find Recipes</button>
   </section>
 
+  <!-- Results Section -->
   <section id="recipeResults"></section>
 
+  <!-- Add Recipe Form -->
   <section id="addRecipe">
     <h2>Add New Recipe</h2>
     <input type="text" id="recipeName" placeholder="Recipe Name" />
@@ -41,29 +45,7 @@
     <button onclick="addRecipe()">Add Recipe</button>
   </section>
 
-  <!-- ✅ Firebase Setup -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyA3aetlyBiZm7OQ_tol2AlgA-FZH5MWa-g",
-      authDomain: "suggestb-85bf6.firebaseapp.com",
-      projectId: "suggestb-85bf6",
-      storageBucket: "suggestb-85bf6.firebasestorage.app",
-      messagingSenderId: "807053257328",
-      appId: "1:807053257328:web:daa84a494b7842f1a2a2b5",
-      measurementId: "G-J1SW2PX0DG"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // Make Firestore accessible to global script
-    window.db = db;
-  </script>
-
-  <!-- Main Script (Non-module, waits for window.db) -->
-  <script src="script.js"></script>
+  <!-- Firebase + Main Logic -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
